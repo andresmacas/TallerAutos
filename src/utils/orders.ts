@@ -124,6 +124,7 @@ export const printOrder = async (id: number, clientKey: string) => {
     })
 
     if (!response.ok) {
+      console.log("Error en orders ts 127 ", response)
       setError('Ocurrio un error al generar el PDF, por favor intente de nuevo más tarde.')
       throw new Error('Error generating PDF')
     }

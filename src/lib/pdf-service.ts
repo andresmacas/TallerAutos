@@ -66,8 +66,10 @@ await page.addStyleTag({
         right: '20mm',
         bottom: '20mm',
         left: '20mm'
-      }
-    });
+      },
+      scale: 1
+    },
+  );
 
     return pdf;
   } finally {

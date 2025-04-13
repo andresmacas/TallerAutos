@@ -29,11 +29,15 @@ export function renderTemplate(templateName: string, data: any): string {
       height: 14px;
       border: 1px solid #000;
       margin-right: 6px;
-      text-align: center;
-      line-height: 14px;
-      font-size: 12px;
-      ${checked ? 'background-color: #000; color: #fff;' : ''}
-    ">${checked ? '✓' : ''}</span>`;
+      vertical-align: middle;
+    ">
+      ${checked ? 
+        `<svg width="12" height="12" viewBox="0 0 12 12" style="margin: 1px;">
+          <path d="M1 6.5L4 9.5L11 2.5" stroke="black" stroke-width="2" fill="none"/>
+        </svg>` : 
+        ''
+      }
+    </span>`;
 
   // Reemplaza todos los checkboxes
   Object.keys(data.elementosIngreso).forEach(key => {

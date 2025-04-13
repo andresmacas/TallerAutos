@@ -22,22 +22,18 @@ export function renderTemplate(templateName: string, data: any): string {
   });
 
   // Función mejorada para generar el HTML del checkbox
-  const generateCheckbox = (checked: boolean) =>
-    `<span style="
-      display: inline-block;
-      width: 14px;
-      height: 14px;
-      border: 1px solid #000;
-      margin-right: 6px;
-      vertical-align: middle;
-    ">
-      ${checked ? 
-        `<svg width="12" height="12" viewBox="0 0 12 12" style="margin: 1px;">
-          <path d="M1 6.5L4 9.5L11 2.5" stroke="black" stroke-width="2" fill="none"/>
-        </svg>` : 
-        ''
-      }
-    </span>`;
+  const generateCheckbox = (checked: boolean) => {
+    // Checkbox no marcado (solo borde)
+    const uncheckedImg = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQiIGhlaWdodD0iMTQiIHZpZXdCb3g9IjAgMCAxNCAxNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTMiIGhlaWdodD0iMTMiIHg9IjAuNSIgeT0iMC41IiByeD0iMiIgZmlsbD0id2hpdGUiIHN0cm9rZT0iYmxhY2siLz48L3N2Zz4=';
+    
+    // Checkbox marcado (borde + checkmark negro, fondo blanco)
+    const checkedImg = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQiIGhlaWdodD0iMTQiIHZpZXdCb3g9IjAgMCAxNCAxNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTMiIGhlaWdodD0iMTMiIHg9IjAuNSIgeT0iMC41IiByeD0iMiIgZmlsbD0id2hpdGUiIHN0cm9rZT0iYmxhY2siLz48cGF0aCBkPSJNMyA3LjVMNiAxMC41TDEwIDYuNSIgc3Ryb2tlPSJibGFjayIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48L3N2Zz4=';
+  
+    return `<img src="${checked ? checkedImg : uncheckedImg}" 
+            style="vertical-align: middle; margin-right: 6px;" 
+            width="14" 
+            height="14" />`;
+  };
 
   // Reemplaza todos los checkboxes
   Object.keys(data.elementosIngreso).forEach(key => {

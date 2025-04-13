@@ -34,9 +34,29 @@ export async function generatePDFFromHTML(html: string) {
   const page = await browser.newPage();
 
   try {
+    // Añadir meta tag para viewport consistente
+    const htmlWithViewport = html.replace(
+      '<head>',
+      '<head><meta name="viewport" content="width=device-width, initial-scale=1.0">'
+    );
+
     await page.setContent(html, {
       waitUntil: 'networkidle0'
     });
+
+// Forzar estilos consistentes
+await page.addStyleTag({
+  content: `
+    * {
+      -webkit-print-color-adjust: exact !important;
+      color-adjust: exact !important;
+    }
+    body {
+      font-size: 12pt !important;
+      font-family: Arial, sans-serif !important;
+    }
+  `
+});
 
     const pdf = await page.pdf({
       format: 'A4',
